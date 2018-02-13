@@ -14,7 +14,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
     recordsToProcess = String.IsNullOrEmpty(recordsToProcess) ? "20" : recordsToProcess;
 	int daysToRetrieve;
 	daysToRetrieve = 7;
-	
+    O365ETL.ConsoleWriter.GetInstance().Writer = log;
     for (int i = 0; i < daysToRetrieve; i++)
 	{
 		DateTime dateToProcess = DateTime.UtcNow.AddDays(-1*i);
