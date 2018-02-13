@@ -18,6 +18,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
     for (int i = 0; i < daysToRetrieve; i++)
 	{
 		DateTime dateToProcess = DateTime.UtcNow.AddDays(-1*i);
+	    O365ETL.ConsoleWriter.GetInstance().Write("\nProcessing " + dateToProcess);
 		try
 		{
 			
