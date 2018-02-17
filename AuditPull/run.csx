@@ -10,9 +10,12 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
     string clientSecret = System.Configuration.ConfigurationManager.ConnectionStrings["ClientSecret"].ConnectionString;
     string tenant = System.Configuration.ConfigurationManager.ConnectionStrings["Tenant"].ConnectionString;
     string clientId = System.Configuration.ConfigurationManager.ConnectionStrings["ClientId"].ConnectionString;
-
-	int daysToRetrieve;
-	daysToRetrieve = 7;
+    var productKeyConfig = System.Configuration.ConfigurationManager.ConnectionStrings["ClientId"];
+    string productKey = string.Empty;
+    if(productKeyConfig != null)
+       productKey = System.Configuration.ConfigurationManager.ConnectionStrings["ProductKey"].ConnectionString;
+    int daysToRetrieve;
+    daysToRetrieve = 7;
     O365ETL.ConsoleWriter.GetInstance().Writer = log;
     for (int i = 0; i < daysToRetrieve; i++)
 	{
@@ -22,7 +25,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
 		{
 			
 			var result =
-				O365ETL.GetOfficeData.Process(clientId, clientSecret, tenant, dateToProcess, connstring, schema).Result;
+				O365ETL.GetOfficeData.Process(clientId, clientSecret, tenant, dateToProcess, connstring, schema, productKey).Result;
 
 		}
 		catch (Exception ex)
