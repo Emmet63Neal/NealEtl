@@ -10,10 +10,10 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
     string clientSecret = System.Configuration.ConfigurationManager.ConnectionStrings["ClientSecret"].ConnectionString;
     string tenant = System.Configuration.ConfigurationManager.ConnectionStrings["Tenant"].ConnectionString;
     string clientId = System.Configuration.ConfigurationManager.ConnectionStrings["ClientId"].ConnectionString;
-    var productKeyConfig = System.Configuration.ConfigurationManager.ConnectionStrings["ClientId"];
+    var productKeyConfig = System.Configuration.ConfigurationManager.ConnectionStrings["ProductKey"];
     string productKey = string.Empty;
     if(productKeyConfig != null)
-       productKey = System.Configuration.ConfigurationManager.ConnectionStrings["ProductKey"].ConnectionString;
+       productKey = productKeyConfig.ConnectionString;
     int daysToRetrieve;
     daysToRetrieve = 7;
     O365ETL.ConsoleWriter.GetInstance().Writer = log;
