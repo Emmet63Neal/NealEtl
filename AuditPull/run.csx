@@ -15,7 +15,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
     if(productKeyConfig != null)
        productKey = productKeyConfig.ConnectionString;
     int daysToRetrieve;
-    daysToRetrieve = 7;
+    daysToRetrieve = 2;
     O365ETL.ConsoleWriter.GetInstance().Writer = log;
     for (int i = 0; i < daysToRetrieve; i++)
 	{
