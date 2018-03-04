@@ -25,7 +25,8 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
 		{
 			
 			var result =
-				O365ETL.GetOfficeData.Process(clientId, clientSecret, tenant, dateToProcess, connstring, schema, productKey).Result;
+				O365ETL.Processor.Process(clientId, clientSecret, tenant, dateToProcess, connstring, schema, productKey)
+				.Result;
 
 		}
 		catch (Exception ex)
@@ -34,8 +35,8 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
 		}
 	}
 	
-	var sql = O365ETL.SQLOperations.GetInstance(connstring);
+	var sql = O365ETL.SQLClient.GetInstance(connstring, schema);
 
-	sql.CreateSP(schema);
-	sql.RunStoredProc(schema + ".uspMoveStaging");
+	sql.CreateSP();
+	sql.RunStoredProc(uspMoveStaging");
 }
